@@ -1,0 +1,165 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+
+const tiers = [
+  {
+    id: "free",
+    name: "Free",
+    price: "$0",
+    desc: "For casual bloggers and first installs.",
+    cta: "Start free",
+    highlight: false,
+    aiPerMonth: "10",
+    articleCap: "3 published",
+    features: [
+      { label: "Block editor (20+ blocks)", on: true },
+      { label: "Basic SEO + UX scoring", on: true },
+      { label: "Save 1 layout template", on: true },
+      { label: "Internal-link AI", on: false },
+      { label: "Article health audit", on: false },
+      { label: "Performance dashboard", on: false },
+      { label: "Live device preview", on: false },
+      { label: "Klaviyo signup block", on: false },
+      { label: "Version history", on: false },
+    ],
+  },
+  {
+    id: "growth",
+    name: "Growth",
+    price: "$19",
+    desc: "Most active solo bloggers.",
+    cta: "Start 7-day trial",
+    highlight: false,
+    aiPerMonth: "100",
+    articleCap: "Unlimited",
+    features: [
+      { label: "Everything in Free", on: true },
+      { label: "Unlimited templates", on: true },
+      { label: "Internal-link AI suggestions", on: true },
+      { label: "Social share preview", on: true },
+      { label: "Klaviyo signup block", on: true },
+      { label: "Drafts + version history", on: true },
+      { label: "Article health audit", on: false },
+      { label: "Performance dashboard", on: false },
+      { label: "Live device preview", on: false },
+    ],
+  },
+  {
+    id: "pro",
+    name: "Pro",
+    price: "$49",
+    desc: "Content marketers + small teams.",
+    cta: "Start 7-day trial",
+    highlight: true,
+    aiPerMonth: "400",
+    articleCap: "Unlimited",
+    features: [
+      { label: "Everything in Growth", on: true },
+      { label: "Article health dashboard", on: true },
+      { label: "Performance analytics", on: true },
+      { label: "Live device preview (desktop/tablet/mobile)", on: true },
+      { label: "Author management + pages", on: true },
+      { label: "Priority email support", on: true },
+      { label: "Multi-author collaboration", on: false },
+      { label: "API access", on: false },
+      { label: "White-label", on: false },
+    ],
+  },
+  {
+    id: "agency",
+    name: "Agency",
+    price: "$129",
+    desc: "Studios managing multiple stores.",
+    cta: "Start 14-day trial",
+    highlight: false,
+    aiPerMonth: "2,000",
+    articleCap: "Unlimited",
+    features: [
+      { label: "Everything in Pro", on: true },
+      { label: "Multi-author collaboration", on: true },
+      { label: "API access", on: true },
+      { label: "White-label option", on: true },
+      { label: "Direct support channel", on: true },
+      { label: "Onboarding assistance", on: true },
+    ],
+  },
+];
+
+const faqs = [
+  { q: "What counts as an AI generation?", a: "Any AI-powered action — outline, full draft, paragraph rewrite, meta description, alt text, SEO title suggestion, or internal-link scan. Each call counts as one generation. The current count is always visible in the editor header." },
+  { q: "What happens if I exceed my monthly AI quota?", a: "Free plan calls are blocked once you hit your monthly cap (you'll see a friendly paywall). Paid plans automatically roll into overage at $0.05 per extra generation, capped at $50/month so you can't get surprise-billed. Raise or lower the cap any time from /app/billing." },
+  { q: "How does the trial work?", a: "Paid plans include a 7-day trial (14 for Agency). You'll set up a payment method through Shopify Billing, but you won't be charged until the trial ends. Cancel any time during the trial and you won't pay a cent." },
+  { q: "Can I switch plans?", a: "Yes, anytime from the in-app /app/billing page. Upgrades take effect immediately; downgrades take effect at the end of your current billing period." },
+  { q: "What if I uninstall?", a: "Shopify cancels your subscription automatically. We delete all your shop-scoped data (drafts, templates, analytics, authors) within 7 days of Shopify's redact webhook firing — well within the 30-day GDPR window." },
+  { q: "Do you offer refunds?", a: "Charges are non-refundable except where required by law. If you were charged in error, email billing@blockpress.app within 14 days and we'll make it right." },
+  { q: "Where does my data live?", a: "On Vercel (US) for hosting and Supabase Postgres (US) for storage. TLS in transit, encrypted at rest. AI prompts and content go to Anthropic, which does not train on API inputs." },
+  { q: "Will you train AI on my content?", a: "No. AI prompts and content are sent to Anthropic's Claude API, which is contractually prohibited from training on commercial-API inputs. We never share your content with any other party." },
+];
+---
+<Layout
+  title="Pricing — BlockPress"
+  description="Plans from Free to Agency. All include AI assistance, real-time SEO scoring, and block editor. Cancel anytime."
+>
+  <section class="bg-bp-bg">
+    <div class="max-w-3xl mx-auto px-6 pt-20 pb-10 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-bp-ink">Pricing that scales with your blog.</h1>
+      <p class="mt-4 text-lg text-bp-ink-muted">Start free. Move up when you're publishing more than once a month. Cancel any time.</p>
+    </div>
+  </section>
+
+  <Section bg="default">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      {tiers.map((t) => (
+        <div class={`rounded-xl border bg-bp-surface p-6 flex flex-col gap-4 relative ${t.highlight ? "border-bp-gold border-2 shadow-lg" : "border-bp-border"}`}>
+          {t.highlight && (
+            <span class="absolute -top-3 left-6 px-2 py-0.5 rounded-full bg-bp-gold text-white text-xs font-bold uppercase tracking-wider">Most popular</span>
+          )}
+          <div>
+            <div class="font-bold text-xl text-bp-ink">{t.name}</div>
+            <p class="text-xs text-bp-ink-muted mt-1">{t.desc}</p>
+          </div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-4xl font-bold text-bp-ink">{t.price}</span>
+            <span class="text-sm text-bp-ink-muted">/mo</span>
+          </div>
+          <div class="space-y-1 text-sm">
+            <div><strong class="text-bp-ink">{t.aiPerMonth}</strong> <span class="text-bp-ink-muted">AI generations/mo</span></div>
+            <div><strong class="text-bp-ink">{t.articleCap}</strong> <span class="text-bp-ink-muted">articles</span></div>
+          </div>
+          <ul class="space-y-2 text-sm flex-1">
+            {t.features.map((f) => (
+              <li class={`flex items-start gap-2 ${f.on ? "text-bp-ink" : "text-gray-300 line-through"}`}>
+                <span class={`mt-0.5 ${f.on ? "text-bp-success" : "text-gray-300"}`}>{f.on ? "✓" : "—"}</span>
+                <span>{f.label}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="https://apps.shopify.com/blockpress" class={`block text-center px-4 py-2.5 rounded-md font-semibold ${t.highlight ? "bg-bp-gold text-white hover:bg-bp-gold-dk" : "bg-bp-ink text-white hover:bg-bp-primary"} transition`}>
+            {t.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+    <p class="text-center text-xs text-bp-ink-muted mt-8 max-w-2xl mx-auto">
+      All charges processed by Shopify Billing. Paid plans include AI overage at $0.05/generation, capped at $50/month by default. Trials require a payment method but you won't be charged until the trial ends.
+    </p>
+  </Section>
+
+  <Section bg="muted">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold text-bp-ink tracking-tight mb-10 text-center">Frequently asked</h2>
+      <div class="space-y-3">
+        {faqs.map((f) => (
+          <details class="rounded-lg border border-bp-border bg-bp-surface group">
+            <summary class="cursor-pointer px-5 py-4 font-semibold text-bp-ink flex items-center justify-between list-none">
+              {f.q}
+              <span class="text-bp-ink-muted text-lg group-open:rotate-45 transition-transform">+</span>
+            </summary>
+            <div class="px-5 pb-4 text-sm text-bp-ink-muted leading-relaxed">{f.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </Section>
+</Layout>

@@ -1,0 +1,46 @@
+---
+interface Row {
+  feature: string;
+  bp: boolean | string;
+  them: boolean | string;
+  note?: string;
+}
+interface Props {
+  competitorName: string;
+  rows: Row[];
+}
+const { competitorName, rows } = Astro.props;
+
+const cell = (v: boolean | string) => {
+  if (v === true) return { text: "Yes", class: "text-bp-success font-bold" };
+  if (v === false) return { text: "—", class: "text-gray-300" };
+  return { text: v, class: "text-bp-ink" };
+};
+---
+<div class="overflow-x-auto rounded-xl border border-bp-border bg-bp-surface">
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="border-b border-bp-border bg-bp-bg">
+        <th class="text-left px-5 py-4 font-bold text-bp-ink">Feature</th>
+        <th class="text-center px-5 py-4 font-bold text-bp-primary">BlockPress</th>
+        <th class="text-center px-5 py-4 font-bold text-bp-ink-muted">{competitorName}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((r) => {
+        const bp = cell(r.bp);
+        const them = cell(r.them);
+        return (
+          <tr class="border-b border-bp-border last:border-0">
+            <td class="px-5 py-4 text-bp-ink">
+              {r.feature}
+              {r.note && <div class="text-xs text-bp-ink-muted mt-1 italic">{r.note}</div>}
+            </td>
+            <td class={`px-5 py-4 text-center ${bp.class}`}>{bp.text}</td>
+            <td class={`px-5 py-4 text-center ${them.class}`}>{them.text}</td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>

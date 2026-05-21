@@ -1,0 +1,129 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+<Layout
+  title="Privacy Policy — BlockPress"
+  description="How BlockPress handles your data. Plain language, no surprises."
+>
+  <section class="bg-bp-surface">
+    <article class="max-w-3xl mx-auto px-6 py-16 md:py-24 bp-prose">
+      <h1>Privacy Policy</h1>
+      <p><strong>Last updated: 2026-05-21</strong></p>
+
+      <p>This Privacy Policy describes how BlockPress ("BlockPress", "we", "us", or "our") collects, uses, and shares information when you install and use the BlockPress app for Shopify (the "App") and visit related websites (collectively, the "Service"). By installing the App you agree to this policy.</p>
+
+      <hr />
+
+      <h2>1. Information we collect</h2>
+
+      <h3>1.1 Information from your Shopify store</h3>
+      <p>When you install BlockPress, Shopify grants the App access to the following resources based on the permissions you approve:</p>
+      <ul>
+        <li><strong>Blog articles, blogs, and metafields</strong> (<code>write_content</code>) — to create, edit, and publish posts you author through BlockPress.</li>
+        <li><strong>Files</strong> (<code>write_files</code>) — to upload images and other media you attach to posts.</li>
+        <li><strong>Products (read-only)</strong> (<code>read_products</code>) — so you can pick products to reference in product-card and product-slider blocks.</li>
+        <li><strong>Themes (read-only)</strong> (<code>read_themes</code>) — to render previews that approximate your storefront's styling.</li>
+      </ul>
+      <p>We do <strong>not</strong> request and do <strong>not</strong> access customer-side personal information (orders, customer records, contact information, payment details).</p>
+
+      <h3>1.2 Information generated through the App</h3>
+      <p>When you use BlockPress, we store:</p>
+      <ul>
+        <li>Article drafts, autosaved revisions, and saved layout templates.</li>
+        <li>Author profiles you create within the App (name, role, bio, avatar, social links you provide).</li>
+        <li>AI usage events (timestamp, action type, model used) for plan-quota enforcement and billing.</li>
+        <li>Subscription state (active plan tier, status, billing-period dates) returned by Shopify Billing.</li>
+        <li>Per-article analytics events submitted by the tracking pixel embedded in published articles: page views, session-scoped scroll depth, time on page, anonymous session id, referrer, and a coarse device classification (mobile/tablet/desktop). The session id is randomly generated and stored in the visitor's browser sessionStorage; it is not linked to any personal identifier.</li>
+      </ul>
+
+      <h3>1.3 Information from your interactions</h3>
+      <ul>
+        <li>App usage telemetry (page views inside the App, error logs) to diagnose issues.</li>
+        <li>Account contact information you provide directly (e.g. via support email).</li>
+      </ul>
+
+      <hr />
+
+      <h2>2. How we use information</h2>
+      <p>We use the information we collect to:</p>
+      <ul>
+        <li>Provide, operate, and maintain the App.</li>
+        <li>Generate AI-assisted content suggestions through Anthropic's API on your explicit request.</li>
+        <li>Bill you according to your selected plan (via Shopify Billing).</li>
+        <li>Render analytics and the Article Health dashboard back to you inside the App.</li>
+        <li>Communicate with you about service updates, billing, and support.</li>
+        <li>Detect, prevent, and address abuse, fraud, or technical issues.</li>
+      </ul>
+      <p>We do <strong>not</strong> sell your information or your customers' information. We do <strong>not</strong> train AI models on your content.</p>
+
+      <hr />
+
+      <h2>3. How we share information</h2>
+      <p>We share information only with the following categories of recipients:</p>
+      <ul>
+        <li><strong>Anthropic, PBC</strong> — your prompts and the content you submit to AI features are sent to Anthropic's API to generate completions. Anthropic processes the data per its commercial usage terms and does not train on API inputs.</li>
+        <li><strong>Shopify</strong> — as required to operate inside the Shopify Admin and process billing.</li>
+        <li><strong>Vercel</strong> — our hosting provider (United States). Data in transit is encrypted with TLS.</li>
+        <li><strong>Supabase / our database provider</strong> — encrypted at rest.</li>
+        <li><strong>Legal and regulatory authorities</strong> — when required by law or to enforce our rights.</li>
+      </ul>
+      <p>We do not share information with advertising networks, data brokers, or marketing partners.</p>
+
+      <hr />
+
+      <h2>4. Data retention</h2>
+      <ul>
+        <li>Article drafts, revisions, and templates persist while your subscription is active.</li>
+        <li>Analytics events are retained for 12 months and then automatically purged.</li>
+        <li>AI usage ledger rows are retained for 24 months for billing reconciliation, then purged.</li>
+        <li>Upon uninstallation, Shopify fires a <code>shop/redact</code> webhook to us 48 hours later. We delete all shop-scoped data within 7 days of that webhook firing (well under the 30-day GDPR deadline).</li>
+        <li>Author profiles you publish as standalone author pages (via Shopify Pages) remain in your Shopify store until you delete them; BlockPress's local copy is purged with the rest of your data on uninstall.</li>
+      </ul>
+
+      <hr />
+
+      <h2>5. Your rights</h2>
+      <p>If you are a resident of the EU, EEA, UK, California, or any jurisdiction with similar laws, you may have the following rights:</p>
+      <ul>
+        <li><strong>Access</strong> — request a copy of personal data we hold about you.</li>
+        <li><strong>Rectification</strong> — request correction of inaccurate data.</li>
+        <li><strong>Deletion</strong> — request deletion of your data.</li>
+        <li><strong>Portability</strong> — receive your data in a portable format.</li>
+        <li><strong>Withdraw consent</strong> — uninstall the App at any time.</li>
+      </ul>
+      <p>Shopify provides built-in GDPR workflows for the <code>customers/data_request</code>, <code>customers/redact</code>, and <code>shop/redact</code> topics. We honor all such requests within the timeframes Shopify mandates.</p>
+      <p>To exercise any of these rights directly, email <strong>privacy@blockpress.app</strong>. We will respond within 30 days.</p>
+
+      <hr />
+
+      <h2>6. Security</h2>
+      <ul>
+        <li>All data in transit is encrypted with TLS 1.2+.</li>
+        <li>Database connections require authenticated, TLS-encrypted sessions.</li>
+        <li>Anthropic API keys, Shopify session tokens, and database credentials are stored as encrypted environment variables.</li>
+        <li>The App is reviewed against the OWASP Top 10 during development.</li>
+      </ul>
+      <p>No system is 100% secure. If we become aware of a breach affecting your data, we will notify you and the relevant authorities as required by law.</p>
+
+      <hr />
+
+      <h2>7. Children's privacy</h2>
+      <p>BlockPress is a B2B SaaS tool for Shopify merchants. We do not knowingly collect information from anyone under 16.</p>
+
+      <hr />
+
+      <h2>8. International transfers</h2>
+      <p>BlockPress is operated from the United States. By using the App, you consent to your information being transferred to and processed in the United States.</p>
+
+      <hr />
+
+      <h2>9. Changes to this policy</h2>
+      <p>We may update this policy from time to time. Material changes will be announced in the App and via email to the support contact on your account at least 30 days before they take effect.</p>
+
+      <hr />
+
+      <h2>10. Contact</h2>
+      <p>Questions about this Privacy Policy? Email <strong>privacy@blockpress.app</strong>.</p>
+    </article>
+  </section>
+</Layout>

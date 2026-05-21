@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import ComparisonTable from "../../components/ComparisonTable.astro";
+
+const rows = [
+  { feature: "Native Shopify integration", bp: true, them: "External widget", note: "BlockPress publishes to Shopify articles natively. DropInBlog embeds via a script tag — articles live in DropInBlog's CMS, not yours." },
+  { feature: "Block-based drag-drop editor", bp: true, them: "Rich text only" },
+  { feature: "AI draft generator", bp: true, them: "Limited" },
+  { feature: "AI rewrite", bp: true, them: "Limited" },
+  { feature: "AI internal-link suggestions", bp: true, them: false, note: "BlockPress scans your full catalog. One-click insert." },
+  { feature: "AI alt-text from image (vision)", bp: true, them: false },
+  { feature: "AI SEO title suggestions", bp: true, them: false },
+  { feature: "Real-time SEO scoring as you write", bp: true, them: "Post-publish" },
+  { feature: "Real-time UX scoring", bp: true, them: false },
+  { feature: "Catalog-wide article health audit", bp: true, them: false },
+  { feature: "On-page performance analytics", bp: true, them: true, note: "Both ship analytics — BlockPress's are tied to the editor." },
+  { feature: "Autosave + version history", bp: true, them: true },
+  { feature: "Live device preview", bp: true, them: false },
+  { feature: "Social share preview", bp: true, them: false },
+  { feature: "Save as template", bp: true, them: false },
+  { feature: "Author profiles + standalone pages", bp: true, them: "Limited" },
+  { feature: "Klaviyo signup block", bp: true, them: false },
+  { feature: "Slug-change auto-redirect", bp: true, them: "n/a (external)" },
+  { feature: "Structured tables", bp: true, them: false },
+  { feature: "FAQ block with schema markup", bp: true, them: false },
+  { feature: "Articles live in YOUR Shopify store", bp: true, them: false, note: "Critical: DropInBlog hosts content; if you cancel, the embed breaks. BlockPress writes directly to Shopify articles." },
+  { feature: "Entry price", bp: "$0 free", them: "$25/mo" },
+];
+---
+<Layout
+  title="BlockPress vs DropInBlog — feature comparison"
+  description="BlockPress is native to Shopify; DropInBlog embeds via a widget. Compare AI features, scoring, and lock-in risk side by side."
+>
+  <section class="bg-bp-bg">
+    <div class="max-w-4xl mx-auto px-6 pt-20 pb-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bp-primary/10 text-bp-primary text-xs font-semibold mb-6">
+        Migrating from DropInBlog?
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-bp-ink">BlockPress vs DropInBlog</h1>
+      <p class="mt-4 text-lg text-bp-ink-muted">DropInBlog hosts your content on its servers and embeds it back into your Shopify store. BlockPress publishes natively to Shopify. The lock-in math matters.</p>
+    </div>
+  </section>
+
+  <Section bg="default">
+    <div class="max-w-2xl mx-auto text-center mb-10">
+      <h2 class="text-2xl md:text-3xl font-bold text-bp-ink">The short answer</h2>
+      <p class="mt-4 text-bp-ink-muted leading-relaxed">
+        DropInBlog has solid analytics and a polished UI. But your articles live in DropInBlog's database, not your Shopify store — if you ever cancel, the embeds break and you have to migrate. BlockPress writes directly to native Shopify articles. Your blog stays portable.
+      </p>
+      <p class="mt-3 text-bp-ink-muted leading-relaxed">
+        On features, BlockPress goes deeper on AI (drafting, rewriting, internal links, alt text, SEO titles) and ships a catalog-wide article health dashboard that DropInBlog doesn't have.
+      </p>
+    </div>
+    <ComparisonTable competitorName="DropInBlog" rows={rows} />
+  </Section>
+
+  <Section bg="muted">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-bold text-bp-ink mb-8">The lock-in problem (and how BlockPress avoids it)</h2>
+      <div class="space-y-5 text-bp-ink-muted leading-relaxed">
+        <p>
+          DropInBlog stores your articles in its own database and serves them back to your storefront via a JavaScript widget. That's a clever architectural choice — until you decide to cancel.
+        </p>
+        <p>
+          When you uninstall DropInBlog, the embed JS stops loading, every blog page on your storefront 404s, and you have to either export everything manually or pay until you migrate. There's no native Shopify representation of your articles.
+        </p>
+        <p>
+          BlockPress works differently. Every article you create lives as a real Shopify article in your store — title, body, image, slug, tags, all native. BlockPress's job is to give you a better editor and better tooling on top of that native data. If you ever uninstall, your articles are still there, exactly where they were, served by Shopify the way every other Shopify article is.
+        </p>
+        <p class="text-bp-ink font-semibold">
+          Translation: with BlockPress, you can leave at any time without breaking anything. With DropInBlog, you can't.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <Section bg="ink">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Try BlockPress free.</h2>
+      <p class="mt-4 text-lg text-white/70">No widget. No lock-in. Just a better blog editor for Shopify.</p>
+      <a href="https://apps.shopify.com/blockpress" class="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-md bg-white text-bp-ink font-semibold hover:bg-bp-gold hover:text-white transition">
+        Install on Shopify
+      </a>
+    </div>
+  </Section>
+</Layout>

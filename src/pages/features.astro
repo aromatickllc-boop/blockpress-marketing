@@ -1,0 +1,91 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+
+const groups = [
+  {
+    name: "AI assistant",
+    intro: "Built on Claude. Trained on the BlockPress SEO + UX rubric so first drafts already pass most checks.",
+    features: [
+      { icon: "✏️", title: "Outline generator", body: "Topic + focus keyword → structured H2/H3 outline with TL;DR and bullet placement." },
+      { icon: "📝", title: "Full-draft writer", body: "1500-word drafts in your brand voice. SEO keyword density baked in (1-2% sweet spot)." },
+      { icon: "🔁", title: "Inline rewriter", body: "Highlight any paragraph, rewrite it in 5 different tones with one click." },
+      { icon: "✨", title: "SEO title suggestions", body: "Two AI-optimized titles per click, both 60-70 chars, focus keyword baked in." },
+      { icon: "📋", title: "Meta description generator", body: "150-160 char meta from title + content. Updates auto-flow into social preview." },
+      { icon: "🖼", title: "AI alt-text from image", body: "Vision-powered alt text. Accessibility + SEO in one click per image." },
+      { icon: "🔗", title: "Internal-link suggestions", body: "AI scans your entire blog catalog and recommends natural anchor phrases. One-click insert." },
+    ],
+  },
+  {
+    name: "SEO + UX scoring",
+    intro: "Real-time grading on the right rail. Every check is actionable — not just a number.",
+    features: [
+      { icon: "🎯", title: "Focus keyword tracker", body: "Title, intro, H2s, density, slug, meta — graded across 15+ checks per article." },
+      { icon: "📊", title: "UX scorer", body: "Readability shape, conversion opportunities, time-to-read affordances, editorial completeness." },
+      { icon: "🩺", title: "Article health dashboard", body: "Catalog-wide audit across 10+ checks. Red/yellow/green per article, prioritized to-do list." },
+      { icon: "🔥", title: "Performance analytics", body: "Pageviews, scroll depth, time on page — tracked per article. 7/30/90-day windows." },
+    ],
+  },
+  {
+    name: "Block editor",
+    intro: "Drag-drop blocks with per-block settings, bulk actions, and inline conversion.",
+    features: [
+      { icon: "🧱", title: "20+ block types", body: "Paragraph, headings, lists, quotes, images, galleries, video, embeds, dividers — plus custom blocks below." },
+      { icon: "📋", title: "Structured tables", body: "Comparison-table styling baked in. Header row, hairline dividers, muted label column. Theme-independent." },
+      { icon: "❓", title: "FAQ block + schema", body: "Auto-injects FAQPage JSON-LD for rich-result eligibility in Google." },
+      { icon: "📚", title: "Auto Table of Contents", body: "Scans H2/H3 blocks, renders a collapsible TOC. Updates on save." },
+      { icon: "👤", title: "Author bio + author pages", body: "Standalone /pages/author-{slug} created per author. Bio, role, socials, background, education, experience, personal quote." },
+      { icon: "🛍", title: "Product cards", body: "Live Shopify product pickers. Snapshot at save time so links survive product deletion." },
+      { icon: "📰", title: "Related posts auto-block", body: "Auto-picks 3 articles from your catalog. Snapshots survive deletion. Re-seeds on every save." },
+      { icon: "📧", title: "Klaviyo signup block", body: "Drop in any klaviyo-form-XXXX class and the block renders the form on the live storefront." },
+      { icon: "🔁", title: "Sidebar layout", body: "Per-article sticky sidebar with product card + related articles. CSS Grid layout, theme-resilient." },
+    ],
+  },
+  {
+    name: "Workflow",
+    intro: "Built for shops with 30+ articles, not just first-time bloggers.",
+    features: [
+      { icon: "⏱", title: "Autosave + version history", body: "Drafts save every 10 seconds. Restore any prior version. Coalesce window keeps history clean." },
+      { icon: "💾", title: "Save as template", body: "Snapshot any article layout under a custom name. Reuse on future posts." },
+      { icon: "👁", title: "Live device preview", body: "Desktop / tablet / mobile in-line iframe with the same HTML the storefront receives." },
+      { icon: "🔁", title: "Slug-change auto-redirect", body: "Rename an article URL? BlockPress auto-creates a 301 redirect from the old slug." },
+      { icon: "🌐", title: "Social share preview", body: "Faithful FB / IG / X / LinkedIn cards. Updates as you edit meta title + description." },
+      { icon: "💬", title: "Brand voice config", body: "Saved per-shop voice that all AI features reference. Set once, stays consistent." },
+    ],
+  },
+];
+---
+<Layout
+  title="Features — BlockPress"
+  description="The full feature list of BlockPress: AI assistant, SEO + UX scoring, block editor, Article Health, version history, social previews, and more."
+>
+  <section class="bg-bp-bg">
+    <div class="max-w-4xl mx-auto px-6 pt-20 pb-10 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-bp-ink">Every feature, in one place.</h1>
+      <p class="mt-4 text-lg text-bp-ink-muted">BlockPress ships with the editor, AI assistant, scorers, and dashboards merchants used to assemble from three separate apps.</p>
+    </div>
+  </section>
+
+  {groups.map((g, i) => (
+    <Section bg={i % 2 === 0 ? "muted" : "default"}>
+      <div class="max-w-3xl mb-10">
+        <div class="text-xs font-bold uppercase tracking-wider text-bp-primary mb-2">{g.name}</div>
+        <h2 class="text-3xl font-bold text-bp-ink tracking-tight">{g.intro}</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {g.features.map((f) => <FeatureCard icon={f.icon} title={f.title} body={f.body} />)}
+      </div>
+    </Section>
+  ))}
+
+  <Section bg="ink">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Try it on your Shopify store.</h2>
+      <p class="mt-4 text-lg text-white/70">Free plan is enough to publish your first AI-assisted article today.</p>
+      <a href="https://apps.shopify.com/blockpress" class="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-md bg-white text-bp-ink font-semibold hover:bg-bp-gold hover:text-white transition">
+        Install on Shopify — Free
+      </a>
+    </div>
+  </Section>
+</Layout>

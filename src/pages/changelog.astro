@@ -1,0 +1,133 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Public changelog. Each entry shows what merchants got in that release.
+// Add the most recent one at the top — chronological order, newest first.
+// Tone: outcome-focused. "What changed for me" not "what code we shipped".
+const releases = [
+  {
+    date: "2026-05-21",
+    title: "Launch on the Shopify App Store",
+    items: [
+      "🎉 Public launch. Free tier available, paid plans from $19/mo.",
+      "Full plan management + AI usage metering inside the app.",
+      "GDPR-compliant data handling, privacy + terms published.",
+    ],
+  },
+  {
+    date: "2026-05-20",
+    title: "Article Health dashboard",
+    items: [
+      "New /app/health route audits your entire catalog across 10+ checks per article.",
+      "Filter by Critical / Needs attention / Healthy. Click any row to expand the full checklist.",
+      "Internal links cross-validated against your full catalog. Broken links flagged.",
+    ],
+  },
+  {
+    date: "2026-05-20",
+    title: "Live device preview tab",
+    items: [
+      "New Preview tab renders your article in desktop / tablet / mobile sizes inline.",
+      "Same HTML the storefront receives — including Klaviyo placeholder + YouTube embeds.",
+      "Right SEO panel auto-hides on Preview so the iframe gets the full width.",
+    ],
+  },
+  {
+    date: "2026-05-20",
+    title: "Save as Template",
+    items: [
+      "Snapshot any article layout under a custom name from the More menu.",
+      "Your saved templates appear on the New Post page alongside built-in starters.",
+    ],
+  },
+  {
+    date: "2026-05-20",
+    title: "Read-time + scroll progress bar",
+    items: [
+      "Published articles now show 'N min read · N,NNN words' above the body.",
+      "Gold gradient progress bar fixed at the top of the page, fills as readers scroll.",
+    ],
+  },
+  {
+    date: "2026-05-20",
+    title: "Slug-change auto-redirect",
+    items: [
+      "Rename an article URL? BlockPress auto-creates a 301 redirect from the old slug.",
+      "Inbound links and search-engine equity survive renames intact.",
+    ],
+  },
+  {
+    date: "2026-05-20",
+    title: "Performance dashboard",
+    items: [
+      "Custom on-page tracking pixel injects into every published article.",
+      "/app/analytics shows pageviews, unique readers, avg scroll depth, avg time on page.",
+      "Per-article rankings + 7/30/90-day windows.",
+    ],
+  },
+  {
+    date: "2026-05-20",
+    title: "Autosave + version history",
+    items: [
+      "Drafts save every 10 seconds automatically. Coalesces within 60s so history stays clean.",
+      "Restore any prior version from the Settings tab in one click.",
+      "Visible status indicator at the top of Settings shows save state.",
+    ],
+  },
+  {
+    date: "2026-05-20",
+    title: "AI internal-link suggestions",
+    items: [
+      "Click 'Find link opportunities' in the SEO tab.",
+      "Claude scans your blog catalog and suggests 3-7 natural anchor phrases.",
+      "One-click 'Insert link' wraps the phrase in an anchor to the target article.",
+      "Insert-all button bulk-applies every suggestion.",
+    ],
+  },
+  {
+    date: "2026-05-20",
+    title: "Social share preview",
+    items: [
+      "Live previews of how the article will render on Facebook, Instagram, X, and LinkedIn.",
+      "Updates as you type the meta title, description, and hero image.",
+    ],
+  },
+  {
+    date: "2026-05-19",
+    title: "Author profiles + standalone author pages",
+    items: [
+      "Each author you create gets a real Shopify Page at /pages/author-{slug}.",
+      "Includes bio, role, social links, background, education, professional experience, personal quote.",
+      "Article bylines link directly to the author's page.",
+    ],
+  },
+];
+---
+<Layout
+  title="Changelog — BlockPress"
+  description="What's new in BlockPress. Outcome-focused notes for every release."
+>
+  <section class="bg-bp-bg">
+    <div class="max-w-3xl mx-auto px-6 pt-20 pb-10 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-bp-ink">Changelog</h1>
+      <p class="mt-4 text-lg text-bp-ink-muted">Every release that ships to merchants. Newest first.</p>
+    </div>
+  </section>
+
+  <section class="bg-bp-surface">
+    <div class="max-w-3xl mx-auto px-6 py-16">
+      <div class="space-y-12">
+        {releases.map((r) => (
+          <div class="border-l-2 border-bp-border pl-6 relative">
+            <div class="absolute -left-2 top-0 w-3 h-3 rounded-full bg-bp-primary"></div>
+            <div class="text-xs uppercase tracking-wider font-bold text-bp-ink-muted">{r.date}</div>
+            <h2 class="text-xl font-bold text-bp-ink mt-1 mb-3">{r.title}</h2>
+            <ul class="space-y-1.5 text-sm text-bp-ink-muted">
+              {r.items.map((i) => <li>{i}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

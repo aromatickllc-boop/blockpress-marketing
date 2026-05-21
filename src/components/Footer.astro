@@ -1,0 +1,54 @@
+---
+const product = [
+  { href: "/features", label: "Features" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/changelog", label: "Changelog" },
+];
+const compare = [
+  { href: "/vs/bloggle", label: "vs Bloggle" },
+  { href: "/vs/dropinblog", label: "vs DropInBlog" },
+];
+const legal = [
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
+  { href: "/contact", label: "Contact" },
+];
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-bp-border bg-bp-surface">
+  <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div class="col-span-2 md:col-span-1">
+      <div class="flex items-center gap-2 font-bold text-lg mb-3">
+        <span class="inline-block w-6 h-6 rounded-md bg-bp-primary text-white grid place-items-center text-xs">B</span>
+        BlockPress
+      </div>
+      <p class="text-sm text-bp-ink-muted leading-relaxed">
+        The AI-native blog editor for Shopify. Built by merchants, for merchants.
+      </p>
+    </div>
+    <div>
+      <div class="text-xs font-bold uppercase tracking-wider text-bp-ink-muted mb-3">Product</div>
+      <ul class="space-y-2">
+        {product.map((l) => <li><a href={l.href} class="text-sm text-bp-ink-muted hover:text-bp-primary">{l.label}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs font-bold uppercase tracking-wider text-bp-ink-muted mb-3">Compare</div>
+      <ul class="space-y-2">
+        {compare.map((l) => <li><a href={l.href} class="text-sm text-bp-ink-muted hover:text-bp-primary">{l.label}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs font-bold uppercase tracking-wider text-bp-ink-muted mb-3">Legal</div>
+      <ul class="space-y-2">
+        {legal.map((l) => <li><a href={l.href} class="text-sm text-bp-ink-muted hover:text-bp-primary">{l.label}</a></li>)}
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-bp-border">
+    <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-bp-ink-muted">© {year} BlockPress. Made for Shopify merchants.</p>
+      <p class="text-xs text-bp-ink-muted">Not affiliated with Shopify Inc.</p>
+    </div>
+  </div>
+</footer>

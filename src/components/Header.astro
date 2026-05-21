@@ -1,0 +1,25 @@
+---
+const links = [
+  { href: "/features", label: "Features" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/changelog", label: "Changelog" },
+];
+---
+<header class="sticky top-0 z-50 bg-bp-surface/95 backdrop-blur border-b border-bp-border">
+  <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 text-bp-ink font-bold text-lg tracking-tight">
+      <span class="inline-block w-7 h-7 rounded-md bg-bp-primary text-white grid place-items-center text-sm">B</span>
+      BlockPress
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      {links.map((l) => (
+        <a href={l.href} class="text-sm text-bp-ink-muted hover:text-bp-ink transition">{l.label}</a>
+      ))}
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="https://apps.shopify.com/blockpress" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-md bg-bp-ink text-white text-sm font-semibold hover:bg-bp-primary transition">
+        Install on Shopify
+      </a>
+    </div>
+  </nav>
+</header>

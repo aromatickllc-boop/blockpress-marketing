@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+
+const channels = [
+  {
+    icon: "💬",
+    title: "Support",
+    body: "Questions, bug reports, feature requests — anything app-related.",
+    email: "support@blockpress.app",
+    response: "Within 24 hours, Mon-Fri",
+  },
+  {
+    icon: "💳",
+    title: "Billing",
+    body: "Refund requests, plan changes, invoice questions.",
+    email: "billing@blockpress.app",
+    response: "Within 48 hours",
+  },
+  {
+    icon: "🛡",
+    title: "Privacy + data",
+    body: "Data access, deletion requests, GDPR / CCPA inquiries.",
+    email: "privacy@blockpress.app",
+    response: "Within 30 days",
+  },
+  {
+    icon: "⚖️",
+    title: "Legal",
+    body: "Terms of service, partnership inquiries, security disclosures.",
+    email: "legal@blockpress.app",
+    response: "Within 5 business days",
+  },
+];
+---
+<Layout
+  title="Contact — BlockPress"
+  description="Get in touch with the BlockPress team. Support, billing, privacy, and legal contacts."
+>
+  <section class="bg-bp-bg">
+    <div class="max-w-3xl mx-auto px-6 pt-20 pb-10 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-bp-ink">Talk to us.</h1>
+      <p class="mt-4 text-lg text-bp-ink-muted">We respond to every email. Pick the right inbox below and we'll get back fast.</p>
+    </div>
+  </section>
+
+  <Section bg="default">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto">
+      {channels.map((c) => (
+        <a href={`mailto:${c.email}`} class="block rounded-xl border border-bp-border bg-bp-surface p-6 hover:border-bp-primary hover:shadow-sm transition">
+          <div class="text-3xl mb-3">{c.icon}</div>
+          <h3 class="font-bold text-lg text-bp-ink mb-1">{c.title}</h3>
+          <p class="text-sm text-bp-ink-muted mb-4 leading-relaxed">{c.body}</p>
+          <div class="text-bp-primary font-semibold text-sm">{c.email}</div>
+          <div class="text-xs text-bp-ink-muted mt-1">{c.response}</div>
+        </a>
+      ))}
+    </div>
+  </Section>
+
+  <Section bg="muted">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-2xl font-bold text-bp-ink mb-4">Need help right now?</h2>
+      <p class="text-bp-ink-muted leading-relaxed">
+        If you're stuck inside the BlockPress editor on a specific article, screenshot the issue and send it to <a href="mailto:support@blockpress.app" class="text-bp-primary underline">support@blockpress.app</a>. Include your shop URL (e.g. <code class="bg-white px-1 rounded text-xs">yourstore.myshopify.com</code>) so we can look up the article on our side.
+      </p>
+    </div>
+  </Section>
+</Layout>

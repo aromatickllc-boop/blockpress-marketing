@@ -1,17 +1,154 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import FeatureCard from "../components/FeatureCard.astro";
 
+const features = [
+  { icon: "✨", title: "AI-assisted from outline to publish", body: "Outline, draft, rewrite, meta description, alt text, SEO titles — all in your voice. Built on Claude." },
+  { icon: "🎯", title: "Real-time SEO + UX scoring", body: "Focus keyword tracking, density, headings, readability, conversion checks — graded live as you write." },
+  { icon: "🔗", title: "AI internal-link suggestions", body: "Auto-scan your blog catalog and suggest natural anchor phrases. One-click insert. SEO compound interest." },
+  { icon: "📊", title: "Catalog-wide health dashboard", body: "Every BlockPress article audited across 10+ checks. Stop guessing which old posts need attention." },
+  { icon: "📈", title: "On-page performance analytics", body: "Pageviews, scroll depth, time on page — tracked per article. Tied back into the editor." },
+  { icon: "⏱", title: "Autosave + version history", body: "Drafts saved every 10 seconds. Restore any prior version with one click. Never lose work again." },
+  { icon: "👀", title: "Live device preview", body: "See your article in desktop, tablet, and mobile sizes inside the editor. No more publish-and-pray." },
+  { icon: "🖼", title: "Social share previews", body: "Faithful FB / IG / X / LinkedIn cards as you type. Catch broken share images before publish." },
+  { icon: "🧱", title: "20+ block types", body: "Tables, FAQs, galleries, product cards, sidebars, author bios, Klaviyo signups, TOCs — all reusable." },
+];
+
+const proofPoints = [
+  { stat: "20 min", label: "from blank page to publish-ready" },
+  { stat: "10+",     label: "AI-powered features built in" },
+  { stat: "100%",    label: "Shopify-native (no external accounts)" },
+];
 ---
+<Layout>
+  <!-- HERO -->
+  <section class="bg-bp-bg">
+    <div class="max-w-6xl mx-auto px-6 pt-20 pb-16 md:pt-28 md:pb-24 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bp-primary/10 text-bp-primary text-xs font-semibold mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-bp-primary"></span>
+        New on the Shopify App Store
+      </div>
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-tight text-bp-ink max-w-4xl mx-auto">
+        The AI-native blog editor<br />
+        <span class="text-bp-primary">built for Shopify.</span>
+      </h1>
+      <p class="mt-6 text-lg md:text-xl text-bp-ink-muted max-w-2xl mx-auto leading-relaxed">
+        Write SEO-optimized blog posts in 20 minutes — with AI drafting, real-time scoring, internal-link suggestions, and a catalog-wide health dashboard.
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="https://apps.shopify.com/blockpress" class="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-bp-ink text-white font-semibold hover:bg-bp-primary transition">
+          Install on Shopify — Free
+        </a>
+        <a href="/features" class="inline-flex items-center gap-2 px-6 py-3 rounded-md border border-bp-border bg-bp-surface text-bp-ink font-semibold hover:border-bp-ink transition">
+          See features →
+        </a>
+      </div>
+      <p class="mt-4 text-xs text-bp-ink-muted">Free plan available · No credit card to start</p>
+    </div>
+  </section>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <!-- PROOF STRIP -->
+  <section class="bg-bp-ink text-white">
+    <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+      {proofPoints.map((p) => (
+        <div>
+          <div class="text-3xl md:text-4xl font-bold tracking-tight">{p.stat}</div>
+          <div class="text-sm text-white/60 mt-1">{p.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FEATURE GRID -->
+  <Section bg="default">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-bp-ink tracking-tight">Everything Bloggle and DropInBlog do — plus the AI they don't.</h2>
+      <p class="mt-4 text-lg text-bp-ink-muted">BlockPress was built for Shopify merchants who want their blog to actually drive revenue, not just collect dust.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {features.map((f) => <FeatureCard icon={f.icon} title={f.title} body={f.body} />)}
+    </div>
+    <div class="text-center mt-12">
+      <a href="/features" class="inline-flex items-center gap-2 text-bp-primary font-semibold hover:text-bp-primary-dk">
+        Browse all features →
+      </a>
+    </div>
+  </Section>
+
+  <!-- HOW IT WORKS -->
+  <Section bg="muted">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-bp-ink tracking-tight">From topic to published in three steps.</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <div class="w-10 h-10 rounded-full bg-bp-primary text-white grid place-items-center font-bold mb-4">1</div>
+        <h3 class="font-bold text-lg mb-2">Type the topic.</h3>
+        <p class="text-bp-ink-muted text-sm leading-relaxed">Enter a focus keyword and a one-line angle. The AI assistant outlines the article in your brand voice, ready to edit.</p>
+      </div>
+      <div>
+        <div class="w-10 h-10 rounded-full bg-bp-primary text-white grid place-items-center font-bold mb-4">2</div>
+        <h3 class="font-bold text-lg mb-2">Drag, drop, optimize.</h3>
+        <p class="text-bp-ink-muted text-sm leading-relaxed">Reorder paragraphs as blocks. Real-time SEO + UX scores tell you exactly what to fix. AI suggests internal links and meta descriptions.</p>
+      </div>
+      <div>
+        <div class="w-10 h-10 rounded-full bg-bp-primary text-white grid place-items-center font-bold mb-4">3</div>
+        <h3 class="font-bold text-lg mb-2">Preview, publish, track.</h3>
+        <p class="text-bp-ink-muted text-sm leading-relaxed">See FB / IG / X / LinkedIn shares before posting. Publish to Shopify. Track pageviews, scroll depth, and time on page from inside the editor.</p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- PRICING TEASER -->
+  <Section bg="default">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-bp-ink tracking-tight">Plans that scale with your blog.</h2>
+      <p class="mt-4 text-lg text-bp-ink-muted">Start free. Upgrade when you're publishing more than one post a month.</p>
+    </div>
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+      <div class="rounded-xl border border-bp-border bg-bp-surface p-6 text-center">
+        <div class="font-bold text-lg">Free</div>
+        <div class="text-3xl font-bold mt-2">$0</div>
+        <p class="text-xs text-bp-ink-muted mt-1">10 AI gens / mo</p>
+      </div>
+      <div class="rounded-xl border border-bp-border bg-bp-surface p-6 text-center">
+        <div class="font-bold text-lg">Growth</div>
+        <div class="text-3xl font-bold mt-2">$19</div>
+        <p class="text-xs text-bp-ink-muted mt-1">100 AI gens / mo</p>
+      </div>
+      <div class="rounded-xl border-2 border-bp-gold bg-gradient-to-b from-amber-50 to-white p-6 text-center relative">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-bp-gold text-white text-xs font-bold uppercase tracking-wider">Most popular</span>
+        <div class="font-bold text-lg">Pro</div>
+        <div class="text-3xl font-bold mt-2">$49</div>
+        <p class="text-xs text-bp-ink-muted mt-1">400 AI gens / mo</p>
+      </div>
+      <div class="rounded-xl border border-bp-border bg-bp-ink text-white p-6 text-center">
+        <div class="font-bold text-lg">Agency</div>
+        <div class="text-3xl font-bold mt-2">$129</div>
+        <p class="text-xs text-white/60 mt-1">2,000 AI gens / mo</p>
+      </div>
+    </div>
+    <div class="text-center mt-10">
+      <a href="/pricing" class="inline-flex items-center gap-2 text-bp-primary font-semibold hover:text-bp-primary-dk">
+        See full pricing →
+      </a>
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <Section bg="ink">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Stop writing blog posts the hard way.</h2>
+      <p class="mt-4 text-lg text-white/70">Install BlockPress on your Shopify store in 30 seconds. Free forever for casual bloggers.</p>
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="https://apps.shopify.com/blockpress" class="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-white text-bp-ink font-semibold hover:bg-bp-gold hover:text-white transition">
+          Install on Shopify
+        </a>
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-md border border-white/20 text-white font-semibold hover:bg-white/10 transition">
+          View pricing
+        </a>
+      </div>
+    </div>
+  </Section>
+</Layout>

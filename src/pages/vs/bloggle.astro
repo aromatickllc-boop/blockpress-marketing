@@ -1,0 +1,92 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import ComparisonTable from "../../components/ComparisonTable.astro";
+
+const rows = [
+  { feature: "Block-based drag-drop editor", bp: true, them: true },
+  { feature: "AI draft generator", bp: true, them: false, note: "Built on Claude. Trained on the BlockPress SEO + UX rubric." },
+  { feature: "AI rewrite / tone shift", bp: true, them: false },
+  { feature: "AI meta description generator", bp: true, them: false },
+  { feature: "AI alt-text from image", bp: true, them: false, note: "Vision-powered. Accessibility + SEO in one click per image." },
+  { feature: "AI SEO title suggestions", bp: true, them: false, note: "Two candidates per click, both in the 60-70 char Google window." },
+  { feature: "AI internal-link suggestions", bp: true, them: false, note: "Scans your full catalog. One-click insert. Largest SEO impact." },
+  { feature: "Real-time SEO scoring", bp: true, them: "Limited" },
+  { feature: "Real-time UX scoring", bp: true, them: false },
+  { feature: "Article health dashboard", bp: true, them: false, note: "Catalog-wide audit across 10+ checks." },
+  { feature: "On-page performance analytics", bp: true, them: false, note: "Pageviews, scroll depth, time on page — built in." },
+  { feature: "Autosave + version history", bp: true, them: "Limited" },
+  { feature: "Social share preview", bp: true, them: false, note: "FB / IG / X / LinkedIn cards as you type." },
+  { feature: "Live device preview", bp: true, them: false, note: "Desktop / tablet / mobile in-line iframe." },
+  { feature: "Save as template", bp: true, them: true },
+  { feature: "Author management + standalone pages", bp: true, them: "Limited" },
+  { feature: "Klaviyo signup block", bp: true, them: false },
+  { feature: "Slug-change auto-redirect", bp: true, them: false, note: "Auto-creates a 301 when you rename an article." },
+  { feature: "Structured tables (comparison styling)", bp: true, them: false },
+  { feature: "FAQ block with schema markup", bp: true, them: true },
+  { feature: "Related posts auto-block", bp: true, them: false },
+  { feature: "Entry price", bp: "$0 free / $19 Growth", them: "$19/mo" },
+];
+---
+<Layout
+  title="BlockPress vs Bloggle — feature comparison"
+  description="A side-by-side comparison of BlockPress and Bloggle for Shopify blog editing. AI features, SEO scoring, and operational tools compared."
+>
+  <section class="bg-bp-bg">
+    <div class="max-w-4xl mx-auto px-6 pt-20 pb-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bp-primary/10 text-bp-primary text-xs font-semibold mb-6">
+        Migrating from Bloggle?
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-bp-ink">BlockPress vs Bloggle</h1>
+      <p class="mt-4 text-lg text-bp-ink-muted">Both apps give you a block editor. Only one of them writes the article with you.</p>
+    </div>
+  </section>
+
+  <Section bg="default">
+    <div class="max-w-2xl mx-auto text-center mb-10">
+      <h2 class="text-2xl md:text-3xl font-bold text-bp-ink">The short answer</h2>
+      <p class="mt-4 text-bp-ink-muted leading-relaxed">
+        Bloggle's a solid block editor at the same price point. If all you need is to lay out paragraphs and product cards, it works. BlockPress adds an AI assistant trained on the SEO rubric, real-time scoring as you write, internal-link suggestions across your catalog, and a catalog-wide health dashboard — the operational tools you need once you have more than 10 published articles.
+      </p>
+    </div>
+    <ComparisonTable competitorName="Bloggle" rows={rows} />
+  </Section>
+
+  <Section bg="muted">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-bold text-bp-ink mb-8">Why writers switch</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="rounded-lg bg-bp-surface border border-bp-border p-6">
+          <div class="text-3xl mb-3">⚡</div>
+          <h3 class="font-bold text-bp-ink mb-2">3× faster first drafts</h3>
+          <p class="text-sm text-bp-ink-muted leading-relaxed">Type the topic + focus keyword, get a structured outline + 1500-word draft in under a minute. Edit from there.</p>
+        </div>
+        <div class="rounded-lg bg-bp-surface border border-bp-border p-6">
+          <div class="text-3xl mb-3">🎯</div>
+          <h3 class="font-bold text-bp-ink mb-2">SEO grades, not guesses</h3>
+          <p class="text-sm text-bp-ink-muted leading-relaxed">Real-time scoring tells you exactly which checks are failing as you write. No more "I think this is optimized?"</p>
+        </div>
+        <div class="rounded-lg bg-bp-surface border border-bp-border p-6">
+          <div class="text-3xl mb-3">🔗</div>
+          <h3 class="font-bold text-bp-ink mb-2">Internal links scale</h3>
+          <p class="text-sm text-bp-ink-muted leading-relaxed">AI scans your full blog catalog and surfaces natural link opportunities. One-click insert. Compounds SEO equity over time.</p>
+        </div>
+        <div class="rounded-lg bg-bp-surface border border-bp-border p-6">
+          <div class="text-3xl mb-3">📊</div>
+          <h3 class="font-bold text-bp-ink mb-2">Operational view of your catalog</h3>
+          <p class="text-sm text-bp-ink-muted leading-relaxed">Article health dashboard flags every issue across every article: missing alt text, broken links, low SEO scores, stale content.</p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section bg="ink">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Try BlockPress free.</h2>
+      <p class="mt-4 text-lg text-white/70">10 AI generations included on the free plan. Enough to publish your first BlockPress article today.</p>
+      <a href="https://apps.shopify.com/blockpress" class="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-md bg-white text-bp-ink font-semibold hover:bg-bp-gold hover:text-white transition">
+        Install on Shopify
+      </a>
+    </div>
+  </Section>
+</Layout>
