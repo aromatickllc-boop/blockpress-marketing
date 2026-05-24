@@ -1,0 +1,58 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+// Sort newest first and drop drafts AND future-dated posts (the latter
+// lets us schedule posts ahead of time — they only appear on the public
+// listing once the site is rebuilt on/after the pubDate).
+const now = Date.now();
+const posts = (await getCollection("blog", ({ data }) => !data.draft && data.pubDate.getTime() <= now))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+---
+<Layout
+  title="Blog — BlockPress"
+  description="Writing better blog posts for Shopify stores. SEO tips, AI workflows, content strategy, and BlockPress how-to guides."
+>
+  <section class="bg-bp-bg">
+    <div class="max-w-3xl mx-auto px-6 pt-20 pb-10 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-bp-ink">Blog</h1>
+      <p class="mt-4 text-lg text-bp-ink-muted">Writing better blog posts for Shopify stores.</p>
+    </div>
+  </section>
+
+  <section class="bg-bp-surface">
+    <div class="max-w-3xl mx-auto px-6 py-16">
+      {posts.length === 0 ? (
+        <p class="text-center text-bp-ink-muted">No posts yet. Check back soon.</p>
+      ) : (
+        <div class="space-y-10">
+          {posts.map((post) => (
+            <article class="border-b border-bp-border pb-10 last:border-b-0">
+              <div class="text-xs uppercase tracking-wider font-bold text-bp-ink-muted">
+                {fmtDate(post.data.pubDate)}
+                {post.data.tags.length > 0 && (
+                  <span> · {post.data.tags.join(" · ")}</span>
+                )}
+              </div>
+              <h2 class="text-2xl font-bold text-bp-ink mt-2 mb-3">
+                <a href={`/blog/${post.id}`} class="hover:text-bp-primary transition">
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="text-base text-bp-ink-muted leading-relaxed">{post.data.description}</p>
+              <a
+                href={`/blog/${post.id}`}
+                class="inline-block mt-4 text-sm font-semibold text-bp-primary hover:underline"
+              >
+                Read more →
+              </a>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

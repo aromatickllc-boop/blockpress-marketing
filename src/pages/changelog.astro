@@ -6,6 +6,76 @@ import Layout from "../layouts/Layout.astro";
 // Tone: outcome-focused. "What changed for me" not "what code we shipped".
 const releases = [
   {
+    date: "2026-05-23",
+    title: "Topic Research → Writing is now one click",
+    items: [
+      "Topic cards on the Topics page now show a 'Start Writing' button.",
+      "Clicking it opens the editor with the title + focus keyword pre-filled AND the AI Assistant already open.",
+      "From a topic idea to a generated draft is a single click + a 'Generate draft' press.",
+    ],
+  },
+  {
+    date: "2026-05-23",
+    title: "AI Assistant smarter and more responsive",
+    items: [
+      "AI drafts now auto-populate the meta title and meta description in one pass — no separate step.",
+      "Em dashes have been banned from AI output. Drafts read more like human writing, less like AI.",
+      "While the AI is working, the button cycles through status messages ('Researching the topic… Writing the introduction… Optimizing SEO…') with a flowing gradient animation, so it never feels frozen.",
+      "Tone picker on the ✨ Rewrite button now flips upward when near the bottom of the screen — no more options hidden off-screen.",
+      "Live SEO score updates correctly the moment you Insert a draft (fixed a state race that was overwriting the score).",
+    ],
+  },
+  {
+    date: "2026-05-23",
+    title: "Editor polish — looks and feels like flowing prose",
+    items: [
+      "Paragraphs no longer render in boxed cards — the editor now reads like a real document while keeping every paragraph as its own drag-and-drop block underneath.",
+      "Block-type pill and drag handles appear on hover only. Idle state is clean prose.",
+      "Live Preview iframe auto-fits the article's actual length — page scrolls naturally instead of trapping scroll inside the preview.",
+      "Tab labels clarified: 'Article Settings', 'Social Share Preview', 'Live Preview' (was just 'Settings / Social / Preview').",
+      "More menu in the page header now opens directly below where you click.",
+      "FAQ blocks are more compact by default and auto-grow as you type answers.",
+      "Saved templates can now be deleted from the New Post template picker (hover for the × button).",
+    ],
+  },
+  {
+    date: "2026-05-23",
+    title: "Reliability fixes",
+    items: [
+      "Selecting text across multiple bullet points now works (was previously limited to one bullet at a time).",
+      "Backspace inside FAQ question/answer fields now works as expected.",
+      "Internal link suggestions no longer wrap headings, only body paragraphs.",
+      "Performance dashboard: 'Top articles' table now hides articles that have been deleted from Shopify.",
+    ],
+  },
+  {
+    date: "2026-05-22",
+    title: "Live progress for first-launch onboarding",
+    items: [
+      "When BlockPress is crawling your blog and analyzing your industry, the dashboard now shows a live progress bar with a real-time countdown.",
+      "You can close the wizard, navigate away, and come back — the dashboard auto-refreshes so you always see current status.",
+      "Status flips to 'Ready' the moment the pipeline finishes, no manual refresh.",
+    ],
+  },
+  {
+    date: "2026-05-22",
+    title: "Accurate page view analytics",
+    items: [
+      "Page views from your own in-admin previews no longer inflate the count.",
+      "Back-navigation from a reader to your article (e.g., reader clicks a product, then hits back) no longer double-counts as a new view within the same session.",
+      "Headless browsers and basic crawlers are filtered out of analytics.",
+      "Result: the view counts in your Performance dashboard reflect actual readers, not noise.",
+    ],
+  },
+  {
+    date: "2026-05-22",
+    title: "View live button",
+    items: [
+      "Published articles now show a 'View live' button in the editor header — one click to see the live storefront version.",
+      "The link includes a tag so your own clicks don't inflate the article's view count.",
+    ],
+  },
+  {
     date: "2026-05-21",
     title: "Launch on the Shopify App Store",
     items: [

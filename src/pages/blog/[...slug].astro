@@ -1,0 +1,94 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+// Astro's static-build entry point — emits one HTML page per blog post.
+// Drafts are excluded from getStaticPaths so they don't ship to prod.
+export async function getStaticPaths() {
+  // Skip drafts AND future-dated posts so scheduled content doesn't
+  // become accessible via direct URL before its pubDate.
+  const now = Date.now();
+  const posts = await getCollection(
+    "blog",
+    ({ data }) => !data.draft && data.pubDate.getTime() <= now,
+  );
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+---
+<Layout
+  title={`${post.data.title} — BlockPress`}
+  description={post.data.description}
+  ogImage={post.data.heroImage}
+>
+  <article class="bg-bp-surface">
+    <div class="max-w-3xl mx-auto px-6 py-16">
+      <a href="/blog" class="text-sm text-bp-ink-muted hover:text-bp-ink transition">← All posts</a>
+
+      <div class="mt-8 text-xs uppercase tracking-wider font-bold text-bp-ink-muted">
+        {fmtDate(post.data.pubDate)} · {post.data.author}
+        {post.data.tags.length > 0 && (
+          <span> · {post.data.tags.join(" · ")}</span>
+        )}
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-bp-ink mt-3 leading-tight">
+        {post.data.title}
+      </h1>
+
+      <p class="mt-4 text-lg text-bp-ink-muted leading-relaxed">{post.data.description}</p>
+
+      {post.data.heroImage && (
+        <img
+          src={post.data.heroImage}
+          alt=""
+          class="w-full rounded-lg mt-8 mb-2"
+          loading="eager"
+        />
+      )}
+
+      <div class="prose prose-bp mt-10 max-w-none">
+        <Content />
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-bp-border">
+        <p class="text-bp-ink-muted text-sm">
+          Want help shipping better blog posts to your Shopify store?{" "}
+          <a href="https://apps.shopify.com/blockpress" class="text-bp-primary font-semibold hover:underline">
+            Install BlockPress →
+          </a>
+        </p>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style is:global>
+  /* Minimal prose styling for blog post body. Matches the site's brand
+     palette without pulling in a full @tailwindcss/typography dependency
+     — the post bodies are short-form enough that hand-rolled is fine. */
+  .prose-bp { color: var(--color-bp-ink, #1a1a1a); line-height: 1.7; font-size: 1.05rem; }
+  .prose-bp h2 { font-size: 1.6rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--color-bp-ink, #1a1a1a); }
+  .prose-bp h3 { font-size: 1.25rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--color-bp-ink, #1a1a1a); }
+  .prose-bp p { margin-bottom: 1.25rem; }
+  .prose-bp a { color: var(--color-bp-primary, #5b3fe3); text-decoration: underline; text-underline-offset: 2px; }
+  .prose-bp a:hover { text-decoration: none; }
+  .prose-bp ul, .prose-bp ol { margin: 1rem 0 1.25rem 1.5rem; }
+  .prose-bp ul { list-style: disc; }
+  .prose-bp ol { list-style: decimal; }
+  .prose-bp li { margin-bottom: 0.4rem; }
+  .prose-bp code { background: #f3f4f6; padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.92em; }
+  .prose-bp pre { background: #f3f4f6; padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
+  .prose-bp pre code { background: transparent; padding: 0; }
+  .prose-bp blockquote { border-left: 3px solid var(--color-bp-primary, #5b3fe3); padding-left: 1rem; margin: 1.5rem 0; color: #4b5563; font-style: italic; }
+  .prose-bp hr { border: 0; border-top: 1px solid #e5e7eb; margin: 2rem 0; }
+  .prose-bp img { border-radius: 8px; margin: 1.5rem 0; }
+</style>
