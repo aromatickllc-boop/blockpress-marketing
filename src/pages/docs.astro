@@ -1,0 +1,120 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+
+const sections = [
+  {
+    title: "Getting started",
+    items: [
+      { title: "Install BlockPress on your Shopify store", desc: "Open the Shopify App Store, search BlockPress, click Install. Approve the data scopes. You'll land on the dashboard." },
+      { title: "Your first BlockPress post", desc: "From the dashboard click New post. Pick a template (Lookbook, Shopping guide, Recipe, FAQ, How-to, Product roundup) or start blank." },
+      { title: "Importing legacy articles", desc: "Articles created before BlockPress show under the Legacy tab. Click Import on any article to convert its HTML into BlockPress blocks." },
+      { title: "Connecting your blogs", desc: "BlockPress reads all blogs in your shop automatically. No extra configuration." },
+    ],
+  },
+  {
+    title: "Writing with AI",
+    items: [
+      { title: "Outline generator", desc: "Type a topic and focus keyword, click Generate outline. You get a structured H2/H3 outline with TL;DR placement." },
+      { title: "Full draft writer", desc: "Pass topic + outline + tone. Claude returns a 400-2200 word draft with keyword density already in the 1-2% sweet spot." },
+      { title: "Inline rewriter", desc: "Highlight any sentence or paragraph in the editor. Click the ✨ button in the inline toolbar. Pick a tone — Claude rewrites the selection in place." },
+      { title: "SEO title suggestions", desc: "On the SEO panel, click Suggest titles. You get two AI-optimized title candidates, both 60-70 chars, focus keyword baked in." },
+      { title: "Meta description generator", desc: "One-click meta description from your title + article content, sized to Google's 150-160 char display window." },
+      { title: "AI alt-text", desc: "On any image block, the SEO panel surfaces a Generate with AI button. Claude Vision reads the image and writes alt text for SEO + accessibility." },
+      { title: "Internal-link suggestions", desc: "Click Find link opportunities on the SEO panel. Claude scans your entire catalog and proposes natural anchor phrases. One click inserts the link." },
+    ],
+  },
+  {
+    title: "Block editor",
+    items: [
+      { title: "Adding a block", desc: "Click the + handle on any empty line, or press Tab on a paragraph. Pick a block type from the inline menu." },
+      { title: "Reordering blocks", desc: "Drag the ⋮⋮ handle on the left of any block. Drop above or below another block." },
+      { title: "Block settings", desc: "Click the ⋮ handle, then Settings. Settings vary per block — borders, alignment, captions, etc." },
+      { title: "Bulk list conversion", desc: "Select multiple paragraphs, press Ctrl/Cmd+Shift+7 (ordered) or +8 (unordered) to convert all of them at once." },
+      { title: "Product cards + sliders", desc: "Pick a Shopify product via the resource picker. BlockPress snapshots title + price + image at save time so the card survives even if the product is later deleted." },
+      { title: "FAQ block", desc: "Each Q/A becomes an item in a collapsible accordion. BlockPress also injects FAQPage JSON-LD for Google rich-result eligibility." },
+      { title: "Auto Table of Contents", desc: "Add the TOC block once. It scans your H2/H3 blocks and renders a navigation list. Updates on every save." },
+    ],
+  },
+  {
+    title: "SEO scoring",
+    items: [
+      { title: "Reading the score card", desc: "The SEO panel shows checks across title, H2s, density, slug, meta, images, links, schema. Each check is actionable — click to jump to the failing block." },
+      { title: "Focus keyword", desc: "Set on the SEO panel. BlockPress grades title presence, intro presence, H2 coverage, density (1-2% sweet spot), slug match, and meta inclusion." },
+      { title: "Article health dashboard", desc: "Catalog-wide health view: every article rated red/yellow/green. Prioritized to-do list for the worst-scoring articles." },
+    ],
+  },
+  {
+    title: "Publishing + scheduling",
+    items: [
+      { title: "Saving a draft", desc: "Autosave runs every 10 seconds while editing. You can also save manually from the top bar. Draft state means the article is not visible on your storefront." },
+      { title: "Publishing", desc: "Click Publish to make the article live. BlockPress serializes the blocks to inline-styled HTML and pushes to Shopify's article API." },
+      { title: "Scheduling", desc: "On the publish panel, pick a future date/time. The article goes live automatically via a Shopify-side scheduled publish at the time you set." },
+      { title: "Version history", desc: "Every save creates a version. Restore any prior version from the version history panel." },
+    ],
+  },
+  {
+    title: "Analytics",
+    items: [
+      { title: "Performance tab", desc: "Per-article and catalog-wide: pageviews, scroll depth, time on page. Toggle 7/30/90-day windows." },
+      { title: "Click tracking", desc: "Every internal link, product card, and CTA emits a click event. The Performance tab surfaces Top clicked links with type chips (product/internal/external)." },
+      { title: "Conversion attribution", desc: "Product card and slider clicks are tagged with the source article — so you can see which posts drive product views." },
+    ],
+  },
+  {
+    title: "Billing + plans",
+    items: [
+      { title: "Free plan", desc: "Unlimited articles. 25 AI generations per month included. Hard stop at the cap — upgrade to keep going." },
+      { title: "Pro plan", desc: "$19/mo. 250 AI generations per month included. Per-generation overage if you go over the cap." },
+      { title: "Growth plan", desc: "$49/mo. 1,000 AI generations per month included. Lower per-generation overage rate." },
+      { title: "Changing plans", desc: "From the dashboard, go to Settings → Billing. Plan changes take effect immediately, prorated by Shopify." },
+    ],
+  },
+];
+---
+<Layout
+  title="Help docs — BlockPress"
+  description="In-depth documentation for BlockPress: getting started, writing with AI, the block editor, SEO scoring, publishing, analytics, and billing."
+>
+  <section class="bg-bp-bg">
+    <div class="max-w-3xl mx-auto px-6 pt-20 pb-10 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-bp-ink">Help docs</h1>
+      <p class="mt-4 text-lg text-bp-ink-muted">Self-service guides for every feature in BlockPress. Can't find what you need? <a href="/contact" class="text-bp-primary underline">Email support</a>.</p>
+    </div>
+  </section>
+
+  <Section bg="default">
+    <div class="max-w-3xl mx-auto">
+      <nav class="mb-12 p-5 rounded-xl border border-bp-border bg-bp-surface">
+        <div class="text-xs font-semibold uppercase tracking-wide text-bp-ink-muted mb-3">On this page</div>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+          {sections.map((s) => (
+            <li><a href={`#${s.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} class="text-bp-primary hover:underline">{s.title}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      {sections.map((s) => (
+        <section id={s.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')} class="mb-12 scroll-mt-24">
+          <h2 class="text-2xl font-bold text-bp-ink mb-5 pb-2 border-b border-bp-border">{s.title}</h2>
+          <div class="space-y-4">
+            {s.items.map((item) => (
+              <div class="p-5 rounded-xl border border-bp-border bg-bp-surface">
+                <h3 class="font-semibold text-bp-ink mb-1.5">{item.title}</h3>
+                <p class="text-sm text-bp-ink-muted leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </Section>
+
+  <Section bg="muted">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-2xl font-bold text-bp-ink mb-3">Still stuck?</h2>
+      <p class="text-bp-ink-muted leading-relaxed mb-6">Email <a href="mailto:support@blockpress.app" class="text-bp-primary underline">support@blockpress.app</a> with your shop URL and a screenshot. We respond within 24 hours, Monday-Friday.</p>
+      <a href="/contact" class="inline-block px-6 py-3 rounded-lg bg-bp-primary text-white font-semibold hover:opacity-90 transition">Contact support</a>
+    </div>
+  </Section>
+</Layout>
